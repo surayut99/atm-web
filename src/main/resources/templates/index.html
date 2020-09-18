@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link th:rel="stylesheet" th:href="@{css/bootstrap.min.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <link th:rel="stylesheet" th:href="@{css/my-style.css}">
+</head>
+
+<body>
+    <div class="container my-3">
+        <h1 class="display-3 my-font text-center" th:text="${header}"></h1>
+        <h5 class="display-5 text-center">So glad for trusting us to take care of your money</h5>
+    </div>
+
+    <div class="container text-center mt-5">
+        <a th:href="@{customer}" class="btn btn-primary">
+            Register
+        </a>
+    </div>
+</body>
+
+</html>
