@@ -1,47 +1,46 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{fragments/main_layout}"
+    xmlns:th="https://www.thymeleaf.org">
 
-<head>
-    <meta charset="UTF-8">
-    <title>Customer</title>
-    <link th:rel="stylesheet" th:href="@{css/bootstrap.min.css}">
-    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
-    <link th:rel="stylesheet" th:href="@{css/my-style.css}">
-</head>
+<div class="container" layout:fragment="content">
+    <h1>Register Customer</h1>
+    <form action="#" th:action="@{/customer}" method="POST">
+        <div class="form-group">
+            <label for="inputId">Id</label>
+            <input type="input" class="form-control" name="id" id="inputId">
+        </div>
 
-<body>
-    <h3 class="text-center display-4 my-font my-3">Register Form</h3>
-    <div class="container d-flex justify-content-center ">
-        <form class="form form-group p-2 border border-secondary rounded" style="width: 20vw" th:action="@{/customer}"
-            method="POST">
-            <!-- name of components should be matched with attributes name -->
-            <input class="form-control my-1" type="number" name="id" placeholder="input id">
-            <input class="form-control my-1" type="text" name="name" placeholder="input name">
-            <input class="form-control my-1" type="password" name="pin" placeholder="input pin">
-            <br><br>
-            <button class="btn btn-primary">Add</button>
-        </form>
-    </div>
+        <div class="form-group">
+            <label for="inputName">Name</label>
+            <input type="input" class="form-control" name="name" id="inputName">
+        </div>
 
+        <div class="form-group">
+            <label for="inputPin">Pin</label>
+            <input type="password" class="form-control" name="pin" id="inputPin">
+        </div>
 
-    <!-- <p th:each="customer : ${allCustomer}" th:text="${customer.name} + ${customer.pin} "></p> -->
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary">
+        </div>
+    </form>
+    <hr>
 
-    <table class="table table-bordered" style="width: 60vw" align="center">
-        <thead style="background-color: whitesmoke;">
+    <h1>All Customers</h1>
+    <table class="table table-bordered">
+        <thead class="thead-light">
             <tr>
-                <td>ID</td>
-                <td>Name</td>
-                <td>PIN</td>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Pin</th>
             </tr>
         </thead>
         <tbody>
-            <tr th:each="c : ${allCustomer}">
-                <td th:text="${c.id}"></td>
-                <td th:text="${c.name}"></td>
-                <td th:text="${c.pin}"></td>
+            <tr th:each="customer: ${allCustomers}">
+                <td th:text="${customer.id}"></td>
+                <td th:text="${customer.name}"></td>
+                <td th:text="${customer.pin}"></td>
             </tr>
         </tbody>
     </table>
-</body>
-
-</html>
+</div>

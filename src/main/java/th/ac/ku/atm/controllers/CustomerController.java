@@ -22,7 +22,7 @@ public class CustomerController {
     @GetMapping
     public String getCustomerPage(Model model) {
 
-        model.addAttribute("allCustomer", customerService.getCustomer());
+        model.addAttribute("allCustomers", customerService.getCustomer());
 
         return "customer";
     }
@@ -30,7 +30,7 @@ public class CustomerController {
     @PostMapping
     public String registerCustomer(@ModelAttribute Customer customer, Model model) {
         customerService.createCustomer(customer);
-        model.addAttribute("allCustomer", customerService.getCustomer());
+        model.addAttribute("allCustomers", customerService.getCustomer());
         return "redirect:customer"; // redirect: used to prevent calling this method again
     }
 }
