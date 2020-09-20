@@ -35,6 +35,6 @@ public class LoginController {
             model.addAttribute("header", "Sorry, this id doesn't exist");
         }
 
-        return "home";
+        return "redirect:home";
     }
 }
