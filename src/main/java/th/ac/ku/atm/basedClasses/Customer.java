@@ -44,4 +44,10 @@ public class Customer {
     public void setPin(String pin) {
         this.pin = pin;
     }
+
+    @Override
+    public String toString() {
+        return "{" + " id='" + getId() + "'" + ", name='" + getName() + "'" + ", pin='" + getPin() + "'" + "}";
+    }
+
 }
