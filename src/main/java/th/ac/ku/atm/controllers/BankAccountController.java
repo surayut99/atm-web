@@ -30,8 +30,8 @@ public class BankAccountController {
 
     @PostMapping
     public String createAccount(@ModelAttribute BankAccount account, Model model) {
-        bankAccountService.createAccount(account);
-        model.addAttribute("allAccounts", bankAccountService.getBankAccounts());
+        bankAccountService.openAccount(account);
+        model.addAttribute("bankaccounts", bankAccountService.getBankAccounts());
 
         return "redirect:bankaccount"; // redirect: used to prevent calling this method again; after ':' <URI>
     }

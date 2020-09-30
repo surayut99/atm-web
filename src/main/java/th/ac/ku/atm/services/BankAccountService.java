@@ -40,6 +40,12 @@ public class BankAccountService {
         return Arrays.asList(accounts);
     }
 
+    public void openAccount(BankAccount bankAccount) {
+        String url = "http://localhost:8091/api/bankaccount";
+
+        restTemplate.postForObject(url, bankAccount, BankAccount.class);
+    }
+
     @PostConstruct
     public void postConstruct() {
         this.bankAccountList = new ArrayList<>();
