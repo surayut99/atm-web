@@ -6,7 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import th.ac.ku.atm.basedClasses.Customer;
+
+import th.ac.ku.atm.models.Customer;
 import th.ac.ku.atm.services.CustomerService;
 
 @Controller

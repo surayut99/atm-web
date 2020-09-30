@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import th.ac.ku.atm.basedClasses.Customer;
+import th.ac.ku.atm.models.Customer;
 import th.ac.ku.atm.services.CustomerService;
 
 @RestController

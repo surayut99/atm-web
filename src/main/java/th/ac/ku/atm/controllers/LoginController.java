@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import th.ac.ku.atm.basedClasses.Customer;
+
+import th.ac.ku.atm.models.Customer;
+import th.ac.ku.atm.services.BankAccountService;
 import th.ac.ku.atm.services.CustomerService;
 
 @Controller
@@ -14,9 +16,11 @@ import th.ac.ku.atm.services.CustomerService;
 public class LoginController {
 
     private CustomerService customerService;
+    private BankAccountService bankAccountService;
 
-    public LoginController(CustomerService customerService) {
+    public LoginController(CustomerService customerService, BankAccountService bankAccountService) {
         this.customerService = customerService;
+        this.bankAccountService = bankAccountService;
     }
 
     @GetMapping
@@ -29,14 +33,15 @@ public class LoginController {
 
         Customer matched = customerService.checkPin(customer);
 
-        // System.out.println(matched.getId());
-
         if (matched != null) {
-            model.addAttribute("greeting", "Welcome, " + matched.getName());
+            model.addAttribute("customerTitle", matched.getName() + "Bank Accoonts");
+            model.addAttribute("bankaccounts", bankAccountService.getCustomerBankAccount(customer.getId()));
+
+            return "customeraccount";
+            // model.addAttribute("greeting", "Welcome, " + matched.getName());
         } else {
             model.addAttribute("greeting", "Sorry, this id doesn't exist");
+            return "home";
         }
-
-        return "home";
     }
 }
