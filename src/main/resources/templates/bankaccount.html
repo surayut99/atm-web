@@ -9,7 +9,7 @@
 
     <div class="form-group">
       <label for="inputCustomer">Customer Id</label>
-      <input type="text" class="form-control" name="customerId" id="inputCustomer">
+      <input type="number" class="form-control" name="customerId" id="inputCustomer">
     </div>
 
     <div class="form-group">
@@ -19,7 +19,7 @@
 
     <div class="form-group">
       <label for="inputBalance">Balance</label>
-      <input type="text" class="form-control" name="balance" id="inputBalance">
+      <input type="number" class="form-control" name="balance" id="inputBalance">
     </div>
 
     <div class="form-group">
@@ -57,15 +57,14 @@
 
             <form th:action="@{/bankaccount/withdraw/{id}(id=${account.id})}" method="POST">
               <input type="number" class="form form-control" th:name="${account.id}" th:id="${account.id}"
-                th:onkeyup="'javascript:checkAmount(' + ${account.id} + ', ' + ${account.balance} + ');'"
-                style="width: 7em;">
+                th:onkeyup="|checkAmount(${account.id}, ${account.balance})|" style="width: 7em;">
               <button type="submit" class="btn btn-primary ml-1">Withdraw</button>
             </form>
 
-            <form th:action="@{/bankaccount/delete/{id}(id=${account.id})}" method="POST">
-              <button type="submit" onclick="confirm('Are you sure to delete this account?')"
-                class="btn btn-danger ml-3">Delete</button>
+            <form method="POST" th:id="delete + ${account.id}">
+              <button class="btn btn-danger ml-3" th:onclick="|confirmDelete(${account.id})|">Delete</button>
             </form>
+
           </div>
         </td>
       </tr>
@@ -79,6 +78,18 @@
         alert('You can not withdraw more than your balance')
         document.getElementById(id).value = parseFloat(balance);
       }
+    }
+
+    function confirmDelete(id) {
+      var form = document.getElementById("delete" + id);
+
+      if (confirm("Are you sure to delete this account ?")) {
+        form.action = "/bankaccount/delete/" + id;
+      } else {
+        form.method = "GET"
+        form.action = "/bankaccount/";
+      }
+      form.submit();
     }
   </script>
 </div>
