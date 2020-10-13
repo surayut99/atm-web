@@ -34,7 +34,7 @@ public class LoginController {
         Customer matched = customerService.checkPin(customer);
 
         if (matched != null) {
-            model.addAttribute("customerTitle", matched.getName() + "Bank Accounts");
+            model.addAttribute("customerTitle", matched.getName() + " Bank Accounts");
             model.addAttribute("bankaccounts", bankAccountService.getCustomerBankAccount(customer.getId()));
 
             return "customeraccount";
